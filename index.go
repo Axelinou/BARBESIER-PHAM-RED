@@ -20,7 +20,7 @@ func main() {
 	p1.Classe = "Chômeur"
 	p1.Niveau = 3
 	p1.Pvmax = 100
-	p1.Pv = 50
+	p1.Pv = 100
 	p1.inventaire = []string{"Cv", "allocation"}
 	p1.inventairepotion = []string{"potion"}
 	p1.capacitéinventairepotion = 3
@@ -29,12 +29,13 @@ func main() {
 	//p1.display()
 	//p1.setPower()
 	//p1.LessPower()
-	fmt.Println("----------------------------")
-	fmt.Println("===================================")
-	fmt.Println("•BIENVENUE SUR  A CHOMAGE ADVENTURE• ")
-	fmt.Println("===================================")
-	fmt.Println("----------------------------")
-	DisplayMenu(Personnage{"Suad", "Chômeur", 3, 100, 50, []string{"Cv", "allocation"}, []string{"potion", "potion", "potion"}, 3, []string{"uzi", "mp5", "ermaemp", "ruby", "remington700"}})
+	fmt.Println("-------------------------------------------------------------------------------")
+	fmt.Println("===============================================================================")
+	fmt.Println("                 •BIENVENUE SUR  A CHOMAGE ADVENTURE• ")
+	fmt.Println("===============================================================================")
+	fmt.Println("-------------------------------------------------------------------------------")
+	fmt.Println(p1.Pv)
+	DisplayMenu(Personnage{"Suad", "Chômeur", 3, 100, 0, []string{"Cv", "allocation"}, []string{"potion", "potion", "potion"}, 3, []string{"uzi", "mp5", "ermaemp", "ruby", "remington700"}})
 }
 
 func display(p1 Personnage) {
@@ -79,10 +80,12 @@ func DisplayMenu(p1 Personnage) {
 	fmt.Println("4. Ameliorer le Personnage")
 	fmt.Println("5. Quitter le jeu")
 	fmt.Println("----------------------------")
+	//removehealth(p1)
+	//fmt.Print(p1.Pv)
+	//iswasted(p1)
+	//fmt.Println("►choisissez parmis ces options◄")
 
-	fmt.Println("►choisissez parmis ces options◄")
-
-	fmt.Print("Type a number:")
+	//fmt.Print("Type a number:")
 	fmt.Scanln(&i)
 	ans := (i)
 	fmt.Println(ans)
@@ -375,7 +378,7 @@ func removeinventory(p1 Personnage) {
 }
 
 func removehealth(p1 Personnage) {
-	p1.Pv -= 1
+	p1.Pv -= 100
 	fmt.Println(p1.Pv)
 }
 
@@ -422,8 +425,27 @@ func addhealthpotion(p1 Personnage) {
 }
 
 func iswasted(p1 Personnage) { // fonction isdead()
-	if p1.Pv <= 0 {
-		fmt.Println("Vous êtes mort")
+	var z int8
+	if p1.Pv < 1 {
+		fmt.Println("----------------------------------------------------------------------------")
+		fmt.Println("_________________  \\'   /   _    _  _|_   _    _|  ________________________")
+		fmt.Println("___________________  V V   (_|  _>   |_  (/_  (_|   _______________________")
+		fmt.Println("__________                                                     __________")
+		fmt.Println("_____________________              _|_                 ________________ ")
+		fmt.Println("____________________                |                 ______________________")
+		fmt.Println("----------------------------------------------------------------------------")
+		fmt.Println("                             Vous êtes mort, Appuyez sur 1 pour recommencer")
+		fmt.Println("                               Appuyez sur 2 pour ragequit")
+		fmt.Print("Votre choix : ")
+		fmt.Scan(&z)
+		switch z {
+		case 1:
+			p1.Pv = p1.Pvmax / 2
+			DisplayMenu(p1)
+			fmt.Println("Vous avez réssuscité avec", p1.Pv, "PV")
+		case 2:
+			fmt.Println("Jeu Fermé")
+			fmt.Println("Vous avez quitté le jeu, Vous feriez mieux la prochaine fois")
+		}
 	}
-
 }

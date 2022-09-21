@@ -30,9 +30,13 @@ func main() {
 	p1.Classe = "Chômeur"
 	p1.Niveau = 3
 	p1.Pvmax = 100
+<<<<<<< HEAD:src/index.go
 
 	p1.Pv = 50
 
+=======
+	p1.Pv = 100
+>>>>>>> 4a03e03c6992aa8d392b3fe2e6e55b952cb9c898:index.go
 	p1.inventaire = []string{"Cv", "allocation"}
 	p1.inventairepotion = []string{"potion"}
 	p1.capacitéinventairepotion = 3
@@ -52,7 +56,12 @@ func main() {
 	fmt.Println("                 •BIENVENUE SUR  A CHOMAGE ADVENTURE• ")
 	fmt.Println("===============================================================================")
 	fmt.Println("-------------------------------------------------------------------------------")
+<<<<<<< HEAD:src/index.go
 	DisplayMenu(Personnage{"Suad", "Chômeur", 3, 100, 50, []string{"Cv", "allocation"}, []string{"potion", "potion", "potion"}, 3, []string{"uzi", "mp5", "ermaemp", "ruby", "remington700"}, []string{"Coup de poing"}, 0, 0, []string{"boule de feu"}, []string{}})
+=======
+	fmt.Println(p1.Pv)
+	DisplayMenu(Personnage{"Suad", "Chômeur", 3, 100, 0, []string{"Cv", "allocation"}, []string{"potion", "potion", "potion"}, 3, []string{"uzi", "mp5", "ermaemp", "ruby", "remington700"}})
+>>>>>>> 4a03e03c6992aa8d392b3fe2e6e55b952cb9c898:index.go
 }
 
 func display(p1 Personnage) {
@@ -106,8 +115,15 @@ func DisplayMenu(p1 Personnage) {
 	fmt.Println("4. Ameliorer le Personnage")
 	fmt.Println("5. Quitter le jeu")
 	fmt.Println("----------------------------")
+<<<<<<< HEAD:src/index.go
 	fmt.Println("----------------------------")
 	fmt.Println("►choisissez parmis ces options◄")
+=======
+	//removehealth(p1)
+	//fmt.Print(p1.Pv)
+	//iswasted(p1)
+	//fmt.Println("►choisissez parmis ces options◄")
+>>>>>>> 4a03e03c6992aa8d392b3fe2e6e55b952cb9c898:index.go
 
 	//fmt.Print("Type a number:")
 	fmt.Scanln(&i)
@@ -469,7 +485,11 @@ func removeinventory(p1 Personnage) {
 }
 
 func removehealth(p1 Personnage) {
+<<<<<<< HEAD:src/index.go
 	p1.Pv = p1.Pv - 50
+=======
+	p1.Pv -= 100
+>>>>>>> 4a03e03c6992aa8d392b3fe2e6e55b952cb9c898:index.go
 	fmt.Println(p1.Pv)
 	iswasted(p1)
 }
@@ -519,8 +539,12 @@ func addhealthpotion(p1 Personnage) {
 
 func iswasted(p1 Personnage) { // fonction isdead()
 	var z int8
+<<<<<<< HEAD:src/index.go
 
 	if p1.Pv <= 0 {
+=======
+	if p1.Pv < 1 {
+>>>>>>> 4a03e03c6992aa8d392b3fe2e6e55b952cb9c898:index.go
 		fmt.Println("----------------------------------------------------------------------------")
 		fmt.Println("_________________  \\'   /   _    _  _|_   _    _|  ________________________")
 		fmt.Println("___________________  V V   (_|  _>   |_  (/_  (_|   _______________________")
@@ -534,6 +558,7 @@ func iswasted(p1 Personnage) { // fonction isdead()
 		fmt.Scan(&z)
 		switch z {
 		case 1:
+<<<<<<< HEAD:src/index.go
 			p1.deathcount += 1
 			fmt.Println("Vous avez déjà mort", p1.deathcount, " fois")
 			fmt.Println("------                              -------")
@@ -548,10 +573,16 @@ func iswasted(p1 Personnage) { // fonction isdead()
 			fmt.Println("      Vous avez ressuscité avec", p1.Pv, "♥")
 			DisplayMenu(p1)
 
+=======
+			p1.Pv = p1.Pvmax / 2
+			DisplayMenu(p1)
+			fmt.Println("Vous avez réssuscité avec", p1.Pv, "PV")
+>>>>>>> 4a03e03c6992aa8d392b3fe2e6e55b952cb9c898:index.go
 		case 2:
 			fmt.Println("Jeu Fermé")
 			fmt.Println("Vous avez quitté le jeu, Vous feriez mieux la prochaine fois")
 		}
+<<<<<<< HEAD:src/index.go
 	} else {
 		DisplayMenu(p1)
 	}
@@ -586,4 +617,7 @@ func SpellBook(p1 Personnage) {
 		fmt.Println("Vous avez déjà appris ce sort")
 		DisplayMenu(p1)
 	}
+=======
+	}
+>>>>>>> 4a03e03c6992aa8d392b3fe2e6e55b952cb9c898:index.go
 }

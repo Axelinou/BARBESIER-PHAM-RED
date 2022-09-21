@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type Personnage struct {
 	Nom                      string
@@ -12,32 +15,48 @@ type Personnage struct {
 	inventairepotion         []string
 	capacitéinventairepotion int
 	inventairemarchand       []string
+	skill                    []string
+	deathcount               int
+	islearned                int
+	marchandinventairesort   []string
+	persoinventairesort      []string
 }
 
 func main() {
 	var p1 Personnage
+	var temp int = 0
+	temp = temp + 0
 	p1.Nom = "Suad"
 	p1.Classe = "Chômeur"
 	p1.Niveau = 3
 	p1.Pvmax = 100
+
 	p1.Pv = 50
+
 	p1.inventaire = []string{"Cv", "allocation"}
 	p1.inventairepotion = []string{"potion"}
 	p1.capacitéinventairepotion = 3
-	p1.inventairemarchand = []string{"uzi", "mp5", "ermaemp", "ruby", "remington700"}
+	p1.inventairemarchand = []string{"uzi", "mp5", "ermaemp", "ruby", "remington700", "boule de feu"}
+
+	p1.skill = []string{"Coup de poing"}
+	p1.marchandinventairesort = []string{"boule de feu"}
+	p1.islearned = 0
+	p1.deathcount = 0
+	p1.persoinventairesort = []string{}
 	//fmt.Println(p1)
 	//p1.display()
 	//p1.setPower()
 	//p1.LessPower()
-	fmt.Println("----------------------------")
-	fmt.Println("===================================")
-	fmt.Println("•BIENVENUE SUR  A CHOMAGE ADVENTURE• ")
-	fmt.Println("===================================")
-	fmt.Println("----------------------------")
-	DisplayMenu(Personnage{"Suad", "Chômeur", 3, 100, 50, []string{"Cv", "allocation"}, []string{"potion", "potion", "potion"}, 3, []string{"uzi", "mp5", "ermaemp", "ruby", "remington700"}})
+	fmt.Println("-------------------------------------------------------------------------------")
+	fmt.Println("===============================================================================")
+	fmt.Println("                 •BIENVENUE SUR  A CHOMAGE ADVENTURE• ")
+	fmt.Println("===============================================================================")
+	fmt.Println("-------------------------------------------------------------------------------")
+	DisplayMenu(Personnage{"Suad", "Chômeur", 3, 100, 50, []string{"Cv", "allocation"}, []string{"potion", "potion", "potion"}, 3, []string{"uzi", "mp5", "ermaemp", "ruby", "remington700"}, []string{"Coup de poing"}, 0, 0, []string{"boule de feu"}, []string{}})
 }
 
 func display(p1 Personnage) {
+
 	fmt.Println("----------------")
 	fmt.Println("Nom du joueur:", p1.Nom)
 	fmt.Println("Classe:", p1.Classe)
@@ -49,84 +68,112 @@ func display(p1 Personnage) {
 	DisplayMenu(p1)
 
 }
-func (p1 *Personnage) setPower() {
-	p1.Niveau += 100
-	fmt.Println("Power:", p1.Niveau)
-}
 
-func (p1 *Personnage) LessPower() {
-	p1.Niveau -= 100
-	fmt.Println("Power:", p1.Niveau)
-}
+//func (p1 *Personnage) setPower() {
+//	p1.Niveau += 100
+//	fmt.Println("Power:", p1.Niveau)
+//}
+
+//func (p1 *Personnage) LessPower() {
+//	p1.Niveau -= 100
+//	fmt.Println("Power:", p1.Niveau)
+//}
 
 func DisplayMenu(p1 Personnage) {
+
+	var i int8
+	var h string
+	fmt.Println(i)
+	fmt.Println(p1.deathcount)
 	potioncount := len(p1.inventairepotion)
+	fmt.Println(p1.Pv)
 	fmt.Println("==========================")
 	fmt.Println(p1.Nom, "                    |")
 	fmt.Println("Santé:", p1.Pv, "♥/", p1.Pvmax, "♥       |               ")
 	fmt.Println("Potion(s) Restante(s):", potioncount, "|              ")
-	fmt.Println("Niveau:", p1.Niveau, "               |")
+	fmt.Println("Niveau:", p1.Niveau, "               |                 ")
+	fmt.Println("Morts:", p1.deathcount, "                |                                                    ")
 	fmt.Println("==========================")
 	fmt.Println("-----")
 	fmt.Println("Menu|")
 	fmt.Println("-----")
 	fmt.Println("----------------------------")
-	var i int8
-	var h string
+	fmt.Println("----------------------------")
+
 	fmt.Println("1. Afficher l'inventaire")
 	fmt.Println("2. Afficher les stats du Personnage")
 	fmt.Println("3. Vendre/Acheter")
 	fmt.Println("4. Ameliorer le Personnage")
 	fmt.Println("5. Quitter le jeu")
 	fmt.Println("----------------------------")
-
+	fmt.Println("----------------------------")
 	fmt.Println("►choisissez parmis ces options◄")
 
-	fmt.Print("Type a number:")
+	//fmt.Print("Type a number:")
 	fmt.Scanln(&i)
-	ans := (i)
-	fmt.Println(ans)
 	fmt.Println("Your number is:", i)
 	switch i {
 	case 1:
+		fmt.Println("Votre inventaire contient les objets suivants:")
 		AcessInventory(p1)
 	case 2:
 		display(p1)
+
 	case 3:
 		marchand(p1)
 	case 4:
-		p1.AddItem("potion")
-		fmt.Println(p1.inventaire)
+		SpellBook(p1)
+		//Poisonpot(p1)
+		//removehealth(p1)
 	case 5:
-		fmt.Print("Voulez-vous vraiment quitter le jeu ?")
+		fmt.Println("____________________________________")
+		fmt.Print("Voulez-vous vraiment quitter le jeu ? ")
+
 		fmt.Scanln(&h)
 		switch h {
 		case "oui":
+			fmt.Println("====================================")
 			fmt.Println("Jeu Fermé")
+			fmt.Println("Merci d'avoir joué")
+			fmt.Println("====================================")
+
 		case "non":
 			DisplayMenu(p1)
-
 		default:
 			fmt.Println("Vous n'avez pas choisi une option valide : Veuillez réessayer")
 			DisplayMenu(p1)
-
 		}
+	default:
+		fmt.Println("Vous n'avez pas choisi une option valide : Veuillez réessayer")
+		DisplayMenu(p1)
+
 	}
 }
+
 func (p1 *Personnage) AddItem(item string) {
 	p1.inventaire = append(p1.inventaire, item)
 }
 
 func AcessInventory(p1 Personnage) {
 	var j int8
+	fmt.Println(p1.deathcount)
+
+	fmt.Println("e")
 	fmt.Println("================================")
-	fmt.Println("Inventaire:|")
+	fmt.Println("Inventaire de", p1.Nom, "|")
+	fmt.Println(p1.Pv)
+	fmt.Println("potion(s) de soin:")
+	fmt.Println(len(p1.inventairepotion))
+	fmt.Println("Sorts:")
+	fmt.Println(p1.persoinventairesort)
+	fmt.Println("Objets:")
 	fmt.Println(p1.inventaire, "|")
 	fmt.Println("================================")
 	fmt.Println("--------------------------------")
 	fmt.Println("choisissez parmis ces options")
 	fmt.Println("1. Utiliser une potion de soin")
-	fmt.Println("2. Quitter l'Inventaire")
+	fmt.Println("2. Apprendre un sort")
+	fmt.Println("3. Quitter l'Inventaire")
 	fmt.Println("----------------------------")
 	fmt.Print("choississez une option: ")
 	fmt.Scanln(&j)
@@ -135,16 +182,19 @@ func AcessInventory(p1 Personnage) {
 	case 1:
 		removehealthpotion(p1)
 	case 2:
-		DisplayMenu(p1)
+		if len(p1.persoinventairesort) == 0 {
+			fmt.Println("Vous n'avez pas de sort à apprendre")
+			AcessInventory(p1)
+		}
+		SpellBook(p1)
 	case 3:
-		removeinventory(p1)
-	case 4:
-		addhealthpotion(p1)
+		DisplayMenu(p1)
 	default:
 		fmt.Println("Vous n'avez pas choisi une option valide : Veuillez réessayer")
 		AcessInventory(p1)
-
+		fmt.Println(p1.Pv)
 	}
+
 }
 
 func marchand(p1 Personnage) {
@@ -189,7 +239,8 @@ func acheter(p1 Personnage) {
 		fmt.Println("3. Ermaemp")
 		fmt.Println("4. Ruby")
 		fmt.Println("5. Remington700")
-		fmt.Println("6. Quitter")
+		fmt.Println("6. Objet Magiques")
+		fmt.Println("7. Quitter")
 		fmt.Println(len(p1.inventairemarchand))
 		fmt.Println(p1.inventairemarchand)
 		fmt.Print("Choississez le produit que vous souhaitez acheter")
@@ -257,6 +308,8 @@ func acheter(p1 Personnage) {
 				acheter(p1)
 			}
 		case 6:
+			buyperk(p1)
+		case 7:
 			marchand(p1)
 		default:
 			fmt.Println("Vous n'avez pas choisi une option valide : Veuillez réessayer")
@@ -264,6 +317,47 @@ func acheter(p1 Personnage) {
 		}
 	}
 }
+func buyperk(p1 Personnage) {
+	if len(p1.marchandinventairesort) == 0 {
+		fmt.Println("Le marchand n'a plus rien à vendre")
+		DisplayMenu(p1)
+	} else {
+		var j int8
+		fmt.Println("Marchand")
+		fmt.Println("objets magiques à vendre:", p1.marchandinventairesort)
+		fmt.Println("1. Boule de feu")
+		fmt.Println("2. Boule de glace")
+		fmt.Println("3. Boule de poison")
+		fmt.Println("4. Boule de foudre")
+		fmt.Println("5. Boule de terre")
+		fmt.Println("6. Boule de vent")
+		fmt.Println("7. Quitter")
+		fmt.Print("Choississez l'objet que vous souhaitez acheter")
+		fmt.Scanln(&j)
+		switch j {
+		case 1:
+			if len(p1.inventairemarchand) >= 1 {
+				fmt.Println("Vous avez acheté un ", p1.marchandinventairesort[:1])
+				p1.persoinventairesort = append(p1.persoinventairesort, p1.marchandinventairesort[:1]...)
+				p1.marchandinventairesort = append(p1.marchandinventairesort[:0], p1.marchandinventairesort[1:]...)
+				fmt.Println(p1.marchandinventairesort)
+				fmt.Println(p1.inventaire)
+
+				fmt.Println(p1.persoinventairesort)
+				buyperk(p1)
+			} else {
+				fmt.Println("Transaction Impossible")
+				buyperk(p1)
+			}
+		case 7:
+			acheter(p1)
+		default:
+			fmt.Println("Vous n'avez pas choisi une option valide : Veuillez réessayer")
+			buyperk(p1)
+		}
+	}
+}
+
 func vendre(p1 Personnage) {
 	fmt.Println("____________________________________")
 	fmt.Println("|                                  |")
@@ -375,8 +469,9 @@ func removeinventory(p1 Personnage) {
 }
 
 func removehealth(p1 Personnage) {
-	p1.Pv -= 1
+	p1.Pv = p1.Pv - 50
 	fmt.Println(p1.Pv)
+	iswasted(p1)
 }
 
 func addhealth(p1 Personnage) {
@@ -390,6 +485,7 @@ func removehealthpotion(p1 Personnage) {
 		fmt.Println("Vous n'avez pas de potion")
 		DisplayMenu(p1)
 	} else {
+		fmt.Println("????", p1.Pv)
 		if p1.Pv == p1.Pvmax {
 			fmt.Println("Votre vie est déja au maximum")
 			fmt.Println("potion(s) restante(s)", potioncount)
@@ -400,7 +496,7 @@ func removehealthpotion(p1 Personnage) {
 		if p1.Pv+25 > p1.Pvmax {
 			p1.Pv = p1.Pvmax
 		} else {
-			p1.Pv += 25
+			p1.Pv = p1.Pv + 25
 		}
 		potioncount = potioncount - 1
 		fmt.Println("vous avez consommé une potion de soin")
@@ -422,8 +518,72 @@ func addhealthpotion(p1 Personnage) {
 }
 
 func iswasted(p1 Personnage) { // fonction isdead()
+	var z int8
+
 	if p1.Pv <= 0 {
-		fmt.Println("Vous êtes mort")
+		fmt.Println("----------------------------------------------------------------------------")
+		fmt.Println("_________________  \\'   /   _    _  _|_   _    _|  ________________________")
+		fmt.Println("___________________  V V   (_|  _>   |_  (/_  (_|   _______________________")
+		fmt.Println("__________                                                     __________")
+		fmt.Println("_____________________              _|_                 ________________ ")
+		fmt.Println("____________________                |                 ______________________")
+		fmt.Println("----------------------------------------------------------------------------")
+		fmt.Println("                             Vous êtes mort, Appuyez sur 1 pour recommencer")
+		fmt.Println("                               Appuyez sur 2 pour ragequit")
+		fmt.Print("Votre choix : ")
+		fmt.Scan(&z)
+		switch z {
+		case 1:
+			p1.deathcount += 1
+			fmt.Println("Vous avez déjà mort", p1.deathcount, " fois")
+			fmt.Println("------                              -------")
+			fmt.Println("                 __ ")
+			fmt.Println(" _________    __|  |__   ________           ")
+			fmt.Println("  _______    |__    __|  _________        ")
+			fmt.Println("                |__|                ")
+			fmt.Println("------                              -------")
+			p1.Pv = p1.Pvmax / 2
+			fmt.Println("pv", p1.Pv)
+
+			fmt.Println("      Vous avez ressuscité avec", p1.Pv, "♥")
+			DisplayMenu(p1)
+
+		case 2:
+			fmt.Println("Jeu Fermé")
+			fmt.Println("Vous avez quitté le jeu, Vous feriez mieux la prochaine fois")
+		}
+	} else {
+		DisplayMenu(p1)
+	}
+}
+
+func Poisonpot(p1 Personnage) {
+	fmt.Println("Vous subissez les effets du poison")
+	for i := 0; i < 3; i++ {
+		fmt.Println("i", i)
+		time.Sleep(1 * time.Second)
+		p1.Pv = p1.Pv - 10
+		fmt.Println("-10 Pv")
+		if p1.Pv <= 0 {
+			p1.Pv = 0
+		}
+		fmt.Println("vous avez ", p1.Pv, "/", p1.Pvmax, "PV")
 	}
 
+	iswasted(p1)
+
+}
+
+func SpellBook(p1 Personnage) {
+	if p1.islearned == 0 {
+		p1.skill = append(p1.skill, "Boule de feu")
+		p1.persoinventairesort = append(p1.persoinventairesort[:0], p1.persoinventairesort[1:]...)
+		fmt.Println("Vous avez appris le sort boule de feu ")
+		p1.islearned = 1
+		fmt.Println(p1.skill)
+		DisplayMenu(p1)
+	} else {
+		fmt.Println("Vous avez déjà appris ce sort")
+		DisplayMenu(p1)
+	}
 }

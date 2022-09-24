@@ -1,0 +1,10 @@
+Participants au projet:  Axel Barbesier, Alexandre Pham
+
+
+Réalisation des taches: 
+
+
+Structure,Achat,Création Personnage,Take Pot,Inventaire,Soin 
+
+
+Menu,Vente, Is Dead, Poison Pot, Stats, Spellbook,Limite inventaire,

@@ -840,8 +840,11 @@ func acheter(p1 Personnage, equipement1 Equipement) {
 		case 7:
 			materials(p1, equipement1)
 		case 8:
+<<<<<<< HEAD
 			upgradeinventoryslot(p1, equipement1)
 		case 9:
+=======
+>>>>>>> 0724743255b8070c78535cbe79fb041c2f678e1f
 			marchand(p1, equipement1)
 		default:
 			fmt.Println("Vous n'avez pas choisi une option valide : Veuillez réessayer")
@@ -1092,9 +1095,12 @@ func materials(p1 Personnage, equipement1 Equipement) {
 	}
 }
 
+<<<<<<< HEAD
 func upgradeinventoryslot(p1 Personnage, equipement1 Equipement) {
 }
 
+=======
+>>>>>>> 0724743255b8070c78535cbe79fb041c2f678e1f
 func vendre(p1 Personnage, equipement1 Equipement) {
 	var cout int
 	fmt.Println("____________________________________")
@@ -1770,6 +1776,7 @@ func forge(p1 Personnage, equipement1 Equipement) {
 					fmt.Println("Vous êtes surchargé, vous ne pouvez pas forger d'armure")
 					DisplayMenu(p1, equipement1)
 				} else {
+<<<<<<< HEAD
 
 					fmt.Println("etape 1")
 					if p1.coins >= 25 {
@@ -1792,6 +1799,29 @@ func forge(p1 Personnage, equipement1 Equipement) {
 										fmt.Println("Vous avez forgé une casquette de chomeur pour le prix de 25 pièces d'or")
 										forge(p1, equipement1)
 
+=======
+					fmt.Println("etape 1")
+					if p1.coins >= 25 {
+						fmt.Println("etape 2")
+						for i := 1; i < len(p1.persoinventairemateriaux); i++ {
+							fmt.Println("efd")
+							if p1.persoinventairemateriaux[i] == "cuir de sanglier" {
+								true1 = i
+								fmt.Println("true1", i, p1.persoinventairemateriaux[i])
+								for j := 1; j < len(p1.persoinventairemateriaux); j++ {
+									if p1.persoinventairemateriaux[i+1] == "plume de corbeaux" {
+										true2 = p1.persoinventairemateriaux[i+1]
+										fmt.Println(true2)
+										fmt.Println("true2", i, p1.persoinventairemateriaux[i+1])
+										equipement1.helmetinventory = append(equipement1.helmetinventory, "casquette de chomeur")
+										p1.persoinventairemateriaux = append(p1.persoinventairemateriaux[:true1])
+										p1.coins = p1.coins - 25
+										fmt.Print(equipement1.helmetinventory)
+										fmt.Print(p1.persoinventairemateriaux)
+										fmt.Println("Vous avez forgé une casquette de chomeur pour le prix de 25 pièces d'or")
+										forge(p1, equipement1)
+
+>>>>>>> 0724743255b8070c78535cbe79fb041c2f678e1f
 									} else {
 										fmt.Println("false2", i, p1.persoinventairemateriaux[i+1])
 										fmt.Println("la condition est ", p1.persoinventairemateriaux[i+1] == "plume de corbeau")
@@ -2015,6 +2045,7 @@ func Armor(equipement1 Equipement, p1 Personnage) {
 							fmt.Println("choississez une armure à équiper")
 							fmt.Println("Vous avez équiper un casque")
 							Armor(equipement1, p1)
+<<<<<<< HEAD
 						}
 					case 2:
 						if len(equipement1.chestinventory) >= 2 {
@@ -2057,6 +2088,10 @@ func Armor(equipement1 Equipement, p1 Personnage) {
 						}
 					default:
 						fmt.Println("Vous n'avez pas choisi une option valide")
+=======
+
+						}
+>>>>>>> 0724743255b8070c78535cbe79fb041c2f678e1f
 					}
 				}
 			} else {
@@ -2081,9 +2116,12 @@ func Armor(equipement1 Equipement, p1 Personnage) {
 							equipement1.chestequiped = append(equipement1.chestinventory, equipement1.chestinventory[:0]...)
 							equipement1.chestinventory = nil
 							p1.havechestplate = true
+<<<<<<< HEAD
 							if equipement1.chestequiped[0] == "sweat de chomeur" {
 								p1.Pvmax = p1.Pvmax + 20
 							}
+=======
+>>>>>>> 0724743255b8070c78535cbe79fb041c2f678e1f
 							fmt.Println(equipement1.helmetequiped)
 							var tet []string
 							tet = nil
@@ -2098,9 +2136,12 @@ func Armor(equipement1 Equipement, p1 Personnage) {
 							equipement1.chestinventory = append(equipement1.chestinventory[:0], equipement1.chestinventory[1:]...)
 
 							p1.havechestplate = true
+<<<<<<< HEAD
 							if equipement1.chestequiped[0] == "sweat de chomeur" {
 								p1.Pvmax = p1.Pvmax + 20
 							}
+=======
+>>>>>>> 0724743255b8070c78535cbe79fb041c2f678e1f
 							fmt.Println(equipement1.chestinventory)
 							fmt.Println(equipement1.chestequiped)
 							fmt.Println("choississez une armure à équiper")
@@ -2108,6 +2149,7 @@ func Armor(equipement1 Equipement, p1 Personnage) {
 							Armor(equipement1, p1)
 
 						}
+<<<<<<< HEAD
 					case 2:
 						if len(equipement1.chestinventory) >= 2 {
 							fmt.Println(equipement1.helmetinventory)
@@ -2151,6 +2193,8 @@ func Armor(equipement1 Equipement, p1 Personnage) {
 					default:
 						fmt.Println("Vous n'avez pas choisi une option valide")
 						Armor(equipement1, p1)
+=======
+>>>>>>> 0724743255b8070c78535cbe79fb041c2f678e1f
 					}
 				}
 			} else {
@@ -2176,11 +2220,16 @@ func Armor(equipement1 Equipement, p1 Personnage) {
 					case 1:
 						if len(equipement1.bootinventory) == 1 {
 							equipement1.bootequiped = append(equipement1.bootinventory, equipement1.bootinventory[:0]...)
+<<<<<<< HEAD
 							equipement1.bootinventory = nil
 							p1.haveboots = true
 							if equipement1.bootequiped[0] == "claquette" {
 								p1.Pvmax = p1.Pvmax + 20
 							}
+=======
+							equipement1.chestinventory = nil
+							p1.haveboots = true
+>>>>>>> 0724743255b8070c78535cbe79fb041c2f678e1f
 							fmt.Println(equipement1.bootequiped)
 							var tet []string
 							tet = nil
@@ -2195,6 +2244,7 @@ func Armor(equipement1 Equipement, p1 Personnage) {
 							equipement1.bootinventory = append(equipement1.bootinventory[:0], equipement1.bootinventory[1:]...)
 
 							p1.haveboots = true
+<<<<<<< HEAD
 							if equipement1.bootequiped[1] == "claquette" {
 								p1.Pvmax = p1.Pvmax + 20
 							}
@@ -2214,12 +2264,15 @@ func Armor(equipement1 Equipement, p1 Personnage) {
 							if equipement1.bootequiped[1] == "claquette" {
 								p1.Pvmax = p1.Pvmax + 20
 							}
+=======
+>>>>>>> 0724743255b8070c78535cbe79fb041c2f678e1f
 							fmt.Println(equipement1.bootinventory)
 							fmt.Println(equipement1.bootequiped)
 							fmt.Println("choississez une armure à équiper")
 							fmt.Println("Vous avez équiper un casque")
 							Armor(equipement1, p1)
 
+<<<<<<< HEAD
 						} else {
 							fmt.Println("Action impossible")
 							Armor(equipement1, p1)
@@ -2243,6 +2296,8 @@ func Armor(equipement1 Equipement, p1 Personnage) {
 						} else {
 							fmt.Println("Action impossible")
 							Armor(equipement1, p1)
+=======
+>>>>>>> 0724743255b8070c78535cbe79fb041c2f678e1f
 						}
 					}
 				}

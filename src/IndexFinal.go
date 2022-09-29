@@ -369,8 +369,7 @@ func buy(p1 Personnage, equipement1 Equipement, Monster1 Monster) { //Fonction p
 			fmt.Println("_____________________________________")
 			fmt.Println("10.  Quitter →")
 			fmt.Println("_____________________________________")
-			fmt.Println(len(p1.inventorytrader))
-			fmt.Println(p1.inventorytrader)
+
 			fmt.Print("$Choississez le produit que vous souhaitez acheter$ ")
 			fmt.Scanln(&t)
 			switch t {
@@ -465,9 +464,12 @@ func buy(p1 Personnage, equipement1 Equipement, Monster1 Monster) { //Fonction p
 						fmt.Println("==============================================================================================================================")
 						fmt.Println("Vous avez acheté un ", p1.inventorytrader[:1], "pour un cout de ,", cout, "d or 💸, il vous reste ", p1.coins, " 💵 pièces d or")
 						fmt.Println("==============================================================================================================================")
+
 						p1.inventory = append(p1.inventory, p1.inventorytrader[:1]...)                 //on ajoute l'objet acheté dans l'inventaire du joueur
 						p1.inventorytrader = append(p1.inventorytrader[:0], p1.inventorytrader[1:]...) //on supprime l'objet acheté de l'inventaire du marchand le principe est le meme pour la vente d'objets
-						t = 0
+						fmt.Println("===================================================================================================")
+						fmt.Println("Vous avez maintenant dans votre inventaire :", p1.inventory, "prenant", len(p1.inventory), "cases")
+						fmt.Println("==================================================================================================")
 						buy(p1, equipement1, Monster1)
 					}
 
@@ -566,6 +568,9 @@ func buy(p1 Personnage, equipement1 Equipement, Monster1 Monster) { //Fonction p
 						fmt.Println("==============================================================================================================================")
 						p1.inventory = append(p1.inventory, p1.inventorytrader[1])
 						p1.inventorytrader = append(p1.inventorytrader[:1], p1.inventorytrader[2:]...)
+						fmt.Println("===================================================================================================")
+						fmt.Println("Vous avez maintenant dans votre inventaire :", p1.inventory, "prenant", len(p1.inventory), "cases")
+						fmt.Println("==================================================================================================")
 						buy(p1, equipement1, Monster1)
 					}
 				} else {
@@ -669,6 +674,9 @@ func buy(p1 Personnage, equipement1 Equipement, Monster1 Monster) { //Fonction p
 						fmt.Println("==============================================================================================================================")
 						p1.inventory = append(p1.inventory, p1.inventorytrader[2])
 						p1.inventorytrader = append(p1.inventorytrader[:2], p1.inventorytrader[3:]...)
+						fmt.Println("===================================================================================================")
+						fmt.Println("Vous avez maintenant dans votre inventaire :", p1.inventory, "prenant", len(p1.inventory), "cases")
+						fmt.Println("==================================================================================================")
 						buy(p1, equipement1, Monster1)
 					}
 				} else {
@@ -764,6 +772,9 @@ func buy(p1 Personnage, equipement1 Equipement, Monster1 Monster) { //Fonction p
 						fmt.Println("Vous avez acheté un ", p1.inventorytrader[3], "pour un cout de", cout, " pièces d'or 💸, il vous reste ", p1.coins, " 💵 pièces d or")
 						fmt.Println("==============================================================================================================================")
 						p1.inventorytrader = append(p1.inventorytrader[:3], p1.inventorytrader[4:]...)
+						fmt.Println("===================================================================================================")
+						fmt.Println("Vous avez maintenant dans votre inventaire :", p1.inventory, "prenant", len(p1.inventory), "cases")
+						fmt.Println("==================================================================================================")
 						buy(p1, equipement1, Monster1)
 					}
 				} else {
@@ -862,6 +873,9 @@ func buy(p1 Personnage, equipement1 Equipement, Monster1 Monster) { //Fonction p
 						fmt.Println("Vous avez acheté un ", p1.inventorytrader[4])
 						p1.inventory = append(p1.inventory, p1.inventorytrader[4])
 						p1.inventorytrader = append(p1.inventorytrader[:4], p1.inventorytrader[5:]...)
+						fmt.Println("===================================================================================================")
+						fmt.Println("Vous avez maintenant dans votre inventaire :", p1.inventory, "prenant", len(p1.inventory), "cases")
+						fmt.Println("==================================================================================================")
 						buy(p1, equipement1, Monster1)
 					}
 				} else {
@@ -962,10 +976,10 @@ func buyperk(p1 Personnage, equipement1 Equipement, Monster1 Monster) {
 				fmt.Println("==============================================================================================================================")
 				p1.persoinventairesort = append(p1.persoinventairesort, p1.traderinventoryspell[:1]...)       //ajoute l'objet acheté dans l'inventaire du joueur
 				p1.traderinventoryspell = append(p1.traderinventoryspell[:0], p1.traderinventoryspell[1:]...) // retire l'objet acheté de l'inventaire du marchand
-				fmt.Println(p1.traderinventoryspell)
-				fmt.Println(p1.inventory)
+				fmt.Println("===================================================================================================")
+				fmt.Println("Vous avez maintenant dans votre inventaire :", p1.persoinventairesort, "prenant", len(p1.inventory), "cases")
+				fmt.Println("==================================================================================================")
 
-				fmt.Println(p1.persoinventairesort)
 				buyperk(p1, equipement1, Monster1) //retour au menu d'achat
 			} else {
 				fmt.Print("===============================================================")

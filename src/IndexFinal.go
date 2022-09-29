@@ -159,7 +159,7 @@ func DisplayMenu(p1 Personnage, equipement1 Equipement, Monster1 Monster) { //Af
 	fmt.Println("4. Ingurgiter une potion de poison ☠️   |")
 	fmt.Println("5. Arene d'entrainement 🗡️              |")
 	fmt.Println("6. Qui sont ils ?❓                     |")
-	fmt.Println("7. Réinitialiser 🚪                     |")
+	fmt.Println("7. Réinitialiser le personnage 🚪       |")
 	fmt.Println("8. Quitter le jeu❌                     |")
 	fmt.Println("-----------------------------------------")
 	fmt.Println("-----------------------------------------")
@@ -1066,7 +1066,9 @@ func materials(p1 Personnage, equipement1 Equipement, Monster1 Monster) {
 				fmt.Println(p1.charmeterialsinventory)
 				materials(p1, equipement1, Monster1)
 			} else {
+				fmt.Println("=======================")
 				fmt.Println("Transaction Impossible")
+				fmt.Println("=======================")
 				materials(p1, equipement1, Monster1)
 			}
 
@@ -1128,7 +1130,9 @@ func materials(p1 Personnage, equipement1 Equipement, Monster1 Monster) {
 				fmt.Println(p1.charmeterialsinventory)
 				materials(p1, equipement1, Monster1)
 			} else {
+				fmt.Println("===========================")
 				fmt.Println("❌Transaction Impossible❌")
+				fmt.Println("===========================")
 				materials(p1, equipement1, Monster1)
 			}
 		case 3: // meme chose que pour le cas 1
@@ -1963,7 +1967,7 @@ func charCreation(p1 Personnage, equipement1 Equipement, Monster1 Monster) { //f
 		} else {
 
 			fmt.Println("Bonjour", name, "!")
-
+			p1.Nom = name
 			fmt.Print("choisissez votre classe : ")
 			fmt.Scanln(&classe)
 			switch classe {
